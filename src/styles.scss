@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+   background-color: #1c1c1c;
+
+}
+
+h1,p,label,button {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+
+$color-principal: #bababa;
+$color-secundario: #aaa;
+$color-blanco: #fff;
+$color-hover: #777;
+$color-activo: #00b341;
+$color-fondo: #1c1c1c;

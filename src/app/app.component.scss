@@ -1,0 +1,95 @@
+@import '../styles.scss';
+
+.container {
+  color: $color-blanco;
+  padding: 150px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media(max-width: 768px) {
+    padding: 120px 0;
+  }
+
+  .content {
+    text-align: center;
+    width: 340px;
+
+    .image {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+      color: $color-principal;
+
+      strong {
+        font-weight: bold;
+      }
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: $color-principal;
+      margin-bottom: 50px;
+      line-height: 27px;
+    }
+
+    label {
+      display: block;
+      font-size: 18px;
+      color: $color-principal;
+      margin-bottom: 5px;
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+     padding: 10px 10px 10px 0px;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid  $color-principal;;
+     color: $color-principal;
+      font-size: 14px;
+      margin-bottom: 5px;
+
+      &::placeholder {
+       color: $color-principal;
+      }
+
+      &:focus {
+        outline: none;
+        border-bottom: 1px solid $color-blanco;
+      }
+    }
+
+    .counter {
+      font-size: 14px;
+      color: $color-secundario;
+      text-align: right;
+      margin-bottom: 20px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: $color-principal;
+      border: none;
+      border-radius: 20px;
+      color: $color-blanco;
+      font-size: 18px;
+      cursor: not-allowed;
+
+      &:hover {
+        background-color: $color-hover;
+      }
+
+      &:enabled {
+        cursor: pointer;
+        background-color: $color-activo;
+      }
+    }
+  }
+}
