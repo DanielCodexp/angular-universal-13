@@ -45,34 +45,46 @@
       text-align: left;
     }
 
-    input {
-      width: 100%;
-     padding: 10px 10px 10px 0px;
-      background-color: transparent;
-      border: none;
-      border-bottom: 1px solid  $color-principal;;
-     color: $color-principal;
-      font-size: 14px;
-      margin-bottom: 5px;
+    .input-group {
+      display: flex;
+     gap: 10px;
+      input {
+        width: 100%;
+        padding: 10px 10px 10px 0px;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid $color-principal;
+        ;
+        color: $color-principal;
+        font-size: 14px;
+        margin-bottom: 5px;
 
-      &::placeholder {
-       color: $color-principal;
+        &::placeholder {
+          color: $color-principal;
+        }
+
+        &:focus {
+          outline: none;
+          border-bottom: 1px solid $color-blanco;
+        }
       }
 
-      &:focus {
-        outline: none;
-        border-bottom: 1px solid $color-blanco;
-      }
     }
+
+    .error-message{
+      padding-top: 10px;
+    }
+
 
     .counter {
       font-size: 14px;
       color: $color-secundario;
       text-align: right;
       margin-bottom: 20px;
+      padding: 3px 20px 0 0;
     }
 
-    button {
+    .button {
       width: 100%;
       padding: 10px;
       background-color: $color-principal;
@@ -80,15 +92,10 @@
       border-radius: 20px;
       color: $color-blanco;
       font-size: 18px;
-      cursor: not-allowed;
+      cursor: pointer;
 
       &:hover {
         background-color: $color-hover;
-      }
-
-      &:enabled {
-        cursor: pointer;
-        background-color: $color-activo;
       }
     }
   }

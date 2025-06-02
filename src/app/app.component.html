@@ -1,22 +1,34 @@
 <section>
- <div class="container">
-  <div class="content">
-    <img src="assets/images/personas-saludando.png" alt="Bienvenida" class="image" />
+  <div class="container">
+    <div class="content">
+      <img src="assets/images/personas-saludando.png" alt="Bienvenida" class="image" />
 
-    <h1>¡Te damos la bienvenida a <br /><strong>Banco Azteca!</strong></h1>
+      <h1>¡Te damos la bienvenida a <br /><strong>Banco Azteca!</strong></h1>
 
-    <p class="subtitle">
-      Usa tu préstamo como dinero en efectivo<br />
-      o compra en donde quieras.
-    </p>
+      <p class="subtitle">
+        Usa tu préstamo como dinero en efectivo<br />
+        o compra en donde quieras.
+      </p>
+      <form [formGroup]="nameForm">
+        <label for="nombre">¿Cómo prefieres que te llamemos?</label>
+        <div class="input-group">
+          <input type="text" id="nombre" readonly formControlName="name" (keypress)="allowAlphaNumericOnly($event)"
+            maxlength="15" placeholder="Escribe tu nombre" />
 
-    <label for="nombre">¿Cómo prefieres que te llamemos?</label>
-    <input type="text" id="nombre" maxlength="15" placeholder="Escribe tu nombre" />
+          <i class="fas fa-microphone" (click)="startRecording()" *ngIf="!isUserSpeaking"></i>
+          <i class="fas fa-microphone-slash" (click)="stopRecording()" *ngIf="isUserSpeaking"></i>
 
-    <div class="counter">0/15 caracteres</div>
+        </div>
+        <div class="error-message" *ngIf="nameForm.controls['name'].invalid && nameForm.controls['name'].touched">
+          <i class="fas fa-exclamation-triangle"></i>
+          El nombre debe contener entre 3 y 15 caracteres alfanuméricos.
 
-    <button disabled>Comenzar</button>
+        </div>
+        <div class="counter">{{ nameForm.get('name')?.value?.length || 0 }}/15 caracteres</div>
+      </form>
+
+      <button class="button" (click)="validateForm()">Comenzar</button>
+    </div>
   </div>
-</div>
 
 </section>
