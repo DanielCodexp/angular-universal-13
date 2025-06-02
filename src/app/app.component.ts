@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EncryptionService } from './services/encryption.service';
 import { VoiceRecognitionService } from './services/voice-recognition.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,6 @@ import { VoiceRecognitionService } from './services/voice-recognition.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-universal-13';
   public loader = false;
   public nameForm: FormGroup;
   public isUserSpeaking: boolean = false;
@@ -17,7 +17,9 @@ export class AppComponent {
   constructor(
     private formBuilder: FormBuilder,
     private encryptionService: EncryptionService,
-    private voiceRecognition: VoiceRecognitionService
+    private voiceRecognition: VoiceRecognitionService,
+    private titleService: Title,
+    private metaService: Meta
   ) {
     this.nameForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.maxLength(15), Validators.pattern('^[a-zA-Z0-9]+$')]],
@@ -25,6 +27,12 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Bienvenido a Banco Azteca');
+    this.metaService.updateTag({
+      name: 'description',
+      content: 'Simulador de bienvenida de Banco Azteca con ingreso de nombre por voz o teclado, validación y cifrado seguro.'
+    });
+    this.metaService.updateTag({ name: 'author', content: 'Angel Daniel Hernández Herrera' });
     this.initVoiceInput();
   }
 
