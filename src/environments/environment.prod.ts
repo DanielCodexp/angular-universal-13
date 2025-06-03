@@ -9,5 +9,5 @@ export const environment = {
     appId: "1:620571136794:web:8e1613ddbe40c876d752a3",
     measurementId: "G-08B7WMLE53"
   },
-  URL_API: 'http://localhost:8080/api',
+  URL_API: 'http://backend-13-5e86d92b759d.herokuapp.com/api',
 };
