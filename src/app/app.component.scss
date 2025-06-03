@@ -47,7 +47,8 @@
 
     .input-group {
       display: flex;
-     gap: 10px;
+      gap: 10px;
+
       input {
         width: 100%;
         padding: 10px 10px 10px 0px;
@@ -71,7 +72,7 @@
 
     }
 
-    .error-message{
+    .error-message {
       padding-top: 10px;
     }
 
@@ -96,6 +97,31 @@
 
       &:hover {
         background-color: $color-hover;
+      }
+    }
+
+    .result {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px 0;
+
+      .flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+      }
+
+      .cipher-text {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        max-width: 100%;
+       border : 1px solid $color-principal;
+        padding: 0.5rem;
+        border-radius: 5px;
+        font-family: monospace;
       }
     }
   }

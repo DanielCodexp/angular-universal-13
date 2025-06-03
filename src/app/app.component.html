@@ -2,9 +2,7 @@
   <div class="container">
     <div class="content">
       <img src="assets/images/personas-saludando.png" alt="Bienvenida" class="image" />
-
       <h1>¡Te damos la bienvenida a <br /><strong>Banco Azteca!</strong></h1>
-
       <p class="subtitle">
         Usa tu préstamo como dinero en efectivo<br />
         o compra en donde quieras.
@@ -28,6 +26,37 @@
       </form>
 
       <button class="button" (click)="validateForm()">Comenzar</button>
+
+     <div *ngIf="encryptedText != ''">
+
+
+      <div class="result">
+        <div class="flex">
+          <label for="nombre">Resultado cifrado</label>
+          <button class="copy-button" (click)="copyToClipboard()">
+            <i class="fas fa-copy"></i> Copiar
+          </button>
+
+        </div>
+        <p class="cipher-text">{{ encryptedText }}</p>
+
+      </div>
+
+      <label for="cipherInput">Pega la cadena cifrada:</label>
+      <div class="input-group">
+        <input id="cipherInput" class="input-group" type="text" [(ngModel)]="cipherInput"
+          placeholder="Ingresa la cadena cifrada aquí" />
+
+        <button class="decrypt-button" (click)="decryptName()">
+          <i class="fas fa-lock-open"></i> Desencriptar
+        </button>
+      </div>
+
+      <div *ngIf="decryptedText">
+        <p><strong>Texto desencriptado:</strong> {{ decryptedText }}</p>
+      </div>
+ </div>
+
     </div>
   </div>
 

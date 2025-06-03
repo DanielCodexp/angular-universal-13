@@ -13,13 +13,16 @@ export class AppComponent {
   public loader = false;
   public nameForm: FormGroup;
   public isUserSpeaking: boolean = false;
+  encryptedText: string = '';
+  cipherInput: string = '';
+decryptedText: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private encryptionService: EncryptionService,
     private voiceRecognition: VoiceRecognitionService,
     private titleService: Title,
-    private metaService: Meta
+    private metaService: Meta,
   ) {
     this.nameForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.maxLength(15), Validators.pattern('^[a-zA-Z0-9]+$')]],
@@ -49,10 +52,15 @@ export class AppComponent {
 
 
     this.voiceRecognition.speechInput().subscribe((input) => {
-      const trimmedInput = input.slice(0, 15);
-      this.nameForm.controls['name'].setValue(input);
+      // Filtrar solo caracteres alfanuméricos
+      const alphanumericInput = input.replace(/[^a-zA-Z0-9]/g, '');
+      const trimmedInput = alphanumericInput.slice(0, 15);
+      this.nameForm.controls['name'].setValue(trimmedInput);
+      console.log("trimmedInput", trimmedInput);
       if (trimmedInput.length >= 15) {
-        this.stopRecording();
+        this.isUserSpeaking = false;
+        this.voiceRecognition.stop();
+        console.log("stop 15 caracteres", trimmedInput);
       }
     });
   }
@@ -89,6 +97,7 @@ export class AppComponent {
       const response = await this.encryptionService.encryptName(name);
       if (response.status == 200) {
         console.log('Encrypted Name:', response.data);
+        this.encryptedText = response.data;
       }
     } catch (error) {
       console.error('Encryption failed:', error);
@@ -96,6 +105,31 @@ export class AppComponent {
       this.loader = false;
     }
   }
+
+  async decryptName(): Promise<void> {
+    try {
+      this.loader = true;
+      const response = await this.encryptionService.decryptName(this.cipherInput);
+      if (response.status == 200) {
+        console.log('Decrypted Name:', response.data);
+        this.decryptedText = response.data;
+      }
+    } catch (error) {
+      console.error('Decryption failed:', error);
+    } finally {
+      this.loader = false;
+    }
+  }
+
+  copyToClipboard() {
+  navigator.clipboard.writeText(this.encryptedText).then(() => {
+    alert('Texto copiado al portapapeles');
+  }).catch(err => {
+    console.error('Error al copiar', err);
+  });
+}
+
+
 
 
 }
