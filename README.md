@@ -60,3 +60,26 @@ src/
 
 - El reconocimiento de voz puede requerir permisos del navegador.
 - El cifrado es solo demostrativo, no debe usarse en producción sin revisión de seguridad.
+
+## Ejecución con Docker
+
+Para ejecutar la aplicación usando Docker, sigue estos pasos:
+
+1. Asegúrate de tener Docker y Docker Compose instalados en tu sistema.
+
+2. Construye y ejecuta los contenedores:
+```bash
+docker-compose up --build
+```
+
+3. La aplicación estará disponible en `http://localhost:4000`
+
+Para detener los contenedores:
+```bash
+docker-compose down
+```
+
+### Notas sobre Docker
+- La aplicación se ejecuta en modo producción dentro del contenedor
+- El puerto 4000 está expuesto para acceder a la aplicación
+- Los contenedores se reiniciarán automáticamente a menos que se detengan manualmente
