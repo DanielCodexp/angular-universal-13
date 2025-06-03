@@ -145,23 +145,7 @@
           "defaultConfiguration": "development"
         },
         "prerender": {
-          "builder": "@nguniversal/builders:prerender",
-          "options": {
-            "routes": [
-              "/"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "angular-universal-13:build:production",
-              "serverTarget": "angular-universal-13:server:production"
-            },
-            "development": {
-              "browserTarget": "angular-universal-13:build:development",
-              "serverTarget": "angular-universal-13:server:development"
-            }
-          },
-          "defaultConfiguration": "production"
+          "routesFile": "routes.txt"
         }
       }
     }
